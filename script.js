@@ -1,21 +1,27 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    // --- 1. LÓGICA MEJORADA PARA EL EFECTO PARALLAX (VERSIÓN PARA ABSOLUTE POSITIONING) ---
-    const parallaxSections = document.querySelectorAll('.parallax-section');
+    // --- 1. LÓGICA PARALLAX COMPATIBLE CON FLEXBOX ---
+    const parallaxContent = document.querySelectorAll('.parallax-content');
 
     window.addEventListener('scroll', () => {
-        parallaxSections.forEach(section => {
-            const content = section.querySelector('.parallax-content');
-            if (!content) return; 
+        // La lógica original funciona perfectamente ahora que el CSS se encarga del centrado.
+        // Mueve el contenido a una velocidad diferente al scroll.
+        let scrollPosition = window.pageYOffset;
 
-            const rect = section.getBoundingClientRect();
+        parallaxContent.forEach(el => {
+            // El 'data-speed' en el HTML controla la velocidad.
+            let speed = parseFloat(el.dataset.speed) || 0.5;
             
-            if (rect.bottom >= 0 && rect.top <= window.innerHeight) {
-                let speed = parseFloat(content.dataset.speed) || 0.5;
-                let offset = rect.top * speed;
-
-                // Combinamos el centrado inicial con el desplazamiento del parallax
-                content.style.transform = `translate(-50%, calc(-50% + ${offset}px))`;
+            // Usamos una traslación vertical simple. Flexbox mantiene el centrado horizontal.
+            // Restamos parte del scroll para que el efecto no sea tan pronunciado al inicio.
+            // Este cálculo es más sutil y funciona mejor con el centrado de Flexbox.
+            let parentSection = el.closest('.parallax-section');
+            let sectionTop = parentSection.offsetTop;
+            let relativeScroll = scrollPosition - sectionTop;
+            
+            // Aplicamos el efecto solo cuando la sección está cerca de la vista.
+            if (scrollPosition + window.innerHeight > sectionTop && scrollPosition < sectionTop + parentSection.offsetHeight) {
+                 el.style.transform = `translateY(${relativeScroll * speed * 0.5}px)`;
             }
         });
     });
