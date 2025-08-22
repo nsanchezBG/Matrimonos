@@ -162,10 +162,12 @@ body {
     box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
+/* CAMBIO: Estilo aplicado a la clase .icon, que ahora es una imagen */
 .gift-item .icon {
     margin-bottom: 20px;
     width: 48px;
     height: 48px;
+    object-fit: contain; /* Asegura que la imagen no se deforme */
 }
 
 .gift-item p {
@@ -260,6 +262,7 @@ p {
 }
 
 .icon {
+    /* Este estilo general se aplica a los SVG que queden (como el de Dress Code) */
     color: var(--color-accent);
     margin-bottom: 15px;
 }
@@ -278,14 +281,14 @@ p {
     transform: translateY(0);
 }
 
-/* --- MÓDULO 6: TRANSMISIÓN EN VIVO (NUEVO) --- */
+/* --- MÓDULO 6: TRANSMISIÓN EN VIVO --- */
 .live-stream-button {
     display: inline-flex;
     align-items: center;
     margin-top: 30px;
     padding: 15px 30px;
     border: 2px solid var(--color-text);
-    border-radius: 50px; /* Botón con forma de píldora */
+    border-radius: 50px;
     color: var(--color-text);
     text-decoration: none;
     font-family: var(--font-date);
@@ -302,7 +305,7 @@ p {
 }
 
 .live-stream-button svg {
-    margin-right: 12px; /* Espacio entre el ícono y el texto */
+    margin-right: 12px;
     width: 24px;
     height: 24px;
 }
