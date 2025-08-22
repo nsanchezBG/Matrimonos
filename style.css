@@ -12,9 +12,11 @@
     --font-heading: 'Glamick', serif; 
     --font-date: 'Open Sans', sans-serif;
     --font-body: 'Lato', sans-serif;
-    --color-text: #333;
-    --color-background: #fdfaf6;
-    --color-accent: #a88a6a;
+    
+    /* CAMBIO: Paleta de colores blanco y negro */
+    --color-text: #161b19;
+    --color-background: #ffffff;
+    --color-accent: #161b19; /* El acento ahora es el mismo negro */
 }
 
 body {
@@ -28,15 +30,13 @@ body {
 
 /* --- ESTRUCTURA DE SECCIONES PRINCIPALES --- */
 
-/* ESTA ES LA REGLA GENERAL CLAVE QUE FALTABA */
-/* Aplica a todas las secciones con imagen de fondo y efecto parallax */
 .parallax-section {
     position: relative;
     height: 100vh;
     overflow: hidden;
     display: flex;
     justify-content: center; 
-    align-items: center; /* Centra el contenido por defecto */   
+    align-items: center;
     text-align: center;
     background-size: cover;
     background-position: center center;
@@ -44,7 +44,6 @@ body {
     box-sizing: border-box;
 }
 
-/* Secciones con fondo de color liso */
 .content-section {
     min-height: 80vh;
     display: flex;
@@ -62,22 +61,19 @@ body {
 
 /* --- ESTILOS ESPECÍFICOS PARA CADA SECCIÓN PARALLAX --- */
 
-/* 1. Módulo Hero */
 #hero {
-    align-items: flex-end; /* Sobrescribe el centrado para alinear abajo */
+    align-items: flex-end;
     padding-bottom: 10vh;
-    background-image: url('foto-principal.jpg'); /* Sin gradiente oscuro */
+    background-image: url('foto-principal.jpg');
 }
 
-/* 2. Módulo Ubicación */
 #location {
-    color: white; /* Aseguramos texto blanco para legibilidad */
+    color: white;
     background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('foto-ubicacion.jpg');
 }
 
-/* 3. Módulo Confirmación */
 #rsvp {
-    color: white; /* Aseguramos texto blanco para legibilidad */
+    color: white;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('foto-confirmacion.jpg');
 }
 
@@ -92,13 +88,12 @@ body {
     box-sizing: border-box;
 }
 
-/* Contenido específico del Hero */
 .hero-text-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    color: #000; /* Texto negro para el hero */
+    color: var(--color-text); /* Usamos la variable para el color negro */
 }
 
 .name, .ampersand {
@@ -109,9 +104,11 @@ body {
 }
 
 .name {
-    font-size: clamp(3.5rem, 12vw, 8rem);
+    /* CAMBIO: Tipografía de los nombres un 30% más grande */
+    font-size: clamp(4.5rem, 15.5vw, 10.5rem);
     line-height: 0.85; 
-    letter-spacing: 0.05em;
+    /* CAMBIO: Interletrado reducido para un look más compacto */
+    letter-spacing: -0.02em;
 }
 
 .ampersand {
@@ -129,7 +126,6 @@ body {
     text-shadow: none;
 }
 
-/* Contenido de la sección Ubicación */
 .address {
     font-size: 1.2rem;
     margin-top: 20px;
@@ -145,7 +141,6 @@ body {
     backdrop-filter: blur(2px);
 }
 
-/* Contenido de la Lista de Novios */
 .gift-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -155,7 +150,7 @@ body {
 
 .gift-item {
     padding: 20px;
-    border: 1px solid #ddd;
+    border: 1px solid #e0e0e0; /* Un gris muy claro para el borde sobre fondo blanco */
     border-radius: 8px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -174,11 +169,10 @@ body {
 
 .gift-item span {
     font-size: 0.9rem;
-    color: #777;
+    color: #555; /* Un gris medio para el texto secundario */
     word-break: break-all;
 }
 
-/* Formulario de Confirmación */
 .rsvp-form {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
@@ -214,7 +208,7 @@ body {
 .rsvp-form button {
     width: 100%;
     padding: 15px;
-    background-color: var(--color-accent);
+    background-color: var(--color-accent); /* Ahora será negro */
     color: white;
     border: none;
     border-radius: 5px;
@@ -225,7 +219,8 @@ body {
 }
 
 .rsvp-form button:hover {
-    background-color: #8c7050;
+    /* CAMBIO: Hover del botón a un gris oscuro */
+    background-color: #333;
 }
 
 /* --- TIPOGRAFÍA GENERAL Y ELEMENTOS MISCELÁNEOS --- */
@@ -235,10 +230,9 @@ h2 {
     font-weight: normal;
     font-size: clamp(2.5rem, 8vw, 4rem);
     margin-bottom: 20px;
-    color: var(--color-accent);
+    color: var(--color-accent); /* Ahora será negro */
 }
 
-/* Estilo para el h2 dentro del formulario, que debe ser blanco */
 .rsvp-form h2 {
     color: white;
     text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
@@ -252,7 +246,7 @@ p {
 }
 
 .icon {
-    color: var(--color-accent);
+    color: var(--color-accent); /* Los íconos ahora serán negros */
     margin-bottom: 15px;
 }
 
