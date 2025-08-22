@@ -162,12 +162,11 @@ body {
     box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
-/* CAMBIO: Estilo aplicado a la clase .icon, que ahora es una imagen */
 .gift-item .icon {
     margin-bottom: 20px;
     width: 48px;
     height: 48px;
-    object-fit: contain; /* Asegura que la imagen no se deforme */
+    object-fit: contain;
 }
 
 .gift-item p {
@@ -262,9 +261,14 @@ p {
 }
 
 .icon {
-    /* Este estilo general se aplica a los SVG que queden (como el de Dress Code) */
     color: var(--color-accent);
     margin-bottom: 15px;
+}
+
+/* CAMBIO: Se añade un tamaño específico para el ícono de Dress Code */
+#dress-code .icon {
+    width: 64px;
+    height: 64px;
 }
 
 /* --- ANIMACIONES --- */
