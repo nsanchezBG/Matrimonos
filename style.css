@@ -52,7 +52,7 @@ body {
 }
 
 .content-wrapper {
-    max-width: 900px; /* Un poco más de espacio para la grilla */
+    max-width: 900px;
     width: 100%;
 }
 
@@ -91,6 +91,7 @@ body {
     color: var(--color-text);
 }
 
+/* El título del Hero se mantiene con la fuente 'Glamick' */
 .name, .ampersand {
     font-family: var(--font-heading);
     font-weight: normal;
@@ -134,32 +135,26 @@ body {
     backdrop-filter: blur(2px);
 }
 
-/* --- MÓDULO LISTA DE NOVIOS (ACTUALIZADO) --- */
+/* --- MÓDULO LISTA DE NOVIOS --- */
 .gift-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Ancho mínimo un poco mayor */
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 30px;
     margin-top: 50px;
 }
 
 .gift-item {
-    /* Estilos de la tarjeta */
     padding: 30px 20px;
     border: 1px solid #e0e0e0;
-    border-radius: 16px; /* Bordes más redondeados */
+    border-radius: 16px;
     background-color: white;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* Sombra sutil */
-    
-    /* Layout interno con Flexbox */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    
-    /* Reseteo de estilos de enlace */
     text-decoration: none;
     color: inherit;
-    
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -169,17 +164,19 @@ body {
 }
 
 .gift-item .icon {
-    margin-bottom: 20px; /* Más espacio entre ícono y texto */
+    margin-bottom: 20px;
     width: 48px;
     height: 48px;
 }
 
 .gift-item p {
-    font-family: var(--font-heading);
-    font-size: 1.3rem;
-    font-weight: normal;
+    /* CAMBIO: Fuente cambiada a Open Sans */
+    font-family: var(--font-date);
+    /* CAMBIO: Añadimos negrita para darle más peso de título */
+    font-weight: 700;
+    font-size: 1.1rem; /* Ajuste de tamaño para Open Sans */
     margin: 0;
-    letter-spacing: 0.1em; /* Espaciado entre letras */
+    letter-spacing: 0.15em;
     text-transform: uppercase;
 }
 
@@ -187,7 +184,7 @@ body {
     font-family: var(--font-body);
     font-size: 1rem;
     color: #777;
-    margin-top: 8px; /* Espacio entre título y descripción */
+    margin-top: 8px;
     word-break: break-all;
 }
 
@@ -243,20 +240,22 @@ body {
 
 /* --- TIPOGRAFÍA GENERAL Y ELEMENTOS MISCELÁNEOS --- */
 h2 {
-    font-family: var(--font-heading);
-    font-weight: normal;
-    font-size: clamp(2.5rem, 8vw, 4rem);
-    margin-bottom: 20px;
+    /* CAMBIO: Fuente cambiada a Open Sans */
+    font-family: var(--font-date); 
+    /* CAMBIO: Añadimos negrita para darle más peso de título */
+    font-weight: 700;
+    font-size: clamp(2rem, 5vw, 2.5rem); /* Ajuste de tamaño para Open Sans */
+    margin-bottom: 25px;
     color: var(--color-accent);
-    letter-spacing: 0.1em; /* Añadimos el espaciado para "LISTA DE NOVIOS" */
+    letter-spacing: 0.2em; /* Un poco más de espacio para este estilo */
     text-transform: uppercase;
 }
 
 .rsvp-form h2 {
     color: white;
     text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
-    letter-spacing: normal; /* Reseteamos el espaciado para este h2 */
-    text-transform: none;
+    /* CAMBIO: Se asegura que también sea mayúsculas */
+    text-transform: uppercase;
 }
 
 p {
