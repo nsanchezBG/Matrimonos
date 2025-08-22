@@ -12,11 +12,9 @@
     --font-heading: 'Glamick', serif; 
     --font-date: 'Open Sans', sans-serif;
     --font-body: 'Lato', sans-serif;
-    
-    /* CAMBIO: Paleta de colores blanco y negro */
     --color-text: #161b19;
     --color-background: #ffffff;
-    --color-accent: #161b19; /* El acento ahora es el mismo negro */
+    --color-accent: #161b19;
 }
 
 body {
@@ -29,7 +27,6 @@ body {
 }
 
 /* --- ESTRUCTURA DE SECCIONES PRINCIPALES --- */
-
 .parallax-section {
     position: relative;
     height: 100vh;
@@ -55,12 +52,11 @@ body {
 }
 
 .content-wrapper {
-    max-width: 800px;
+    max-width: 900px; /* Un poco más de espacio para la grilla */
     width: 100%;
 }
 
 /* --- ESTILOS ESPECÍFICOS PARA CADA SECCIÓN PARALLAX --- */
-
 #hero {
     align-items: flex-end;
     padding-bottom: 10vh;
@@ -78,7 +74,6 @@ body {
 }
 
 /* --- ESTILOS DE COMPONENTES Y CONTENIDO INTERNO --- */
-
 .parallax-content {
     position: relative;
     z-index: 1;
@@ -93,7 +88,7 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    color: var(--color-text); /* Usamos la variable para el color negro */
+    color: var(--color-text);
 }
 
 .name, .ampersand {
@@ -104,10 +99,8 @@ body {
 }
 
 .name {
-    /* CAMBIO: Tipografía de los nombres un 30% más grande */
-    font-size: clamp(6.5rem, 15.5vw, 10.5rem);
+    font-size: clamp(4.5rem, 15.5vw, 10.5rem);
     line-height: 0.85; 
-    /* CAMBIO: Interletrado reducido para un look más compacto */
     letter-spacing: -0.02em;
 }
 
@@ -141,38 +134,64 @@ body {
     backdrop-filter: blur(2px);
 }
 
+/* --- MÓDULO LISTA DE NOVIOS (ACTUALIZADO) --- */
 .gift-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Ancho mínimo un poco mayor */
     gap: 30px;
-    margin-top: 40px;
+    margin-top: 50px;
 }
 
 .gift-item {
-    padding: 20px;
-    border: 1px solid #e0e0e0; /* Un gris muy claro para el borde sobre fondo blanco */
-    border-radius: 8px;
+    /* Estilos de la tarjeta */
+    padding: 30px 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 16px; /* Bordes más redondeados */
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* Sombra sutil */
+    
+    /* Layout interno con Flexbox */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    /* Reseteo de estilos de enlace */
+    text-decoration: none;
+    color: inherit;
+    
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .gift-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.08);
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.gift-item .icon {
+    margin-bottom: 20px; /* Más espacio entre ícono y texto */
+    width: 48px;
+    height: 48px;
 }
 
 .gift-item p {
     font-family: var(--font-heading);
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: normal;
-    margin: 10px 0 5px;
+    margin: 0;
+    letter-spacing: 0.1em; /* Espaciado entre letras */
+    text-transform: uppercase;
 }
 
 .gift-item span {
-    font-size: 0.9rem;
-    color: #555; /* Un gris medio para el texto secundario */
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: #777;
+    margin-top: 8px; /* Espacio entre título y descripción */
     word-break: break-all;
 }
 
+/* --- MÓDULO FORMULARIO --- */
 .rsvp-form {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
@@ -208,7 +227,7 @@ body {
 .rsvp-form button {
     width: 100%;
     padding: 15px;
-    background-color: var(--color-accent); /* Ahora será negro */
+    background-color: var(--color-accent);
     color: white;
     border: none;
     border-radius: 5px;
@@ -219,23 +238,25 @@ body {
 }
 
 .rsvp-form button:hover {
-    /* CAMBIO: Hover del botón a un gris oscuro */
     background-color: #333;
 }
 
 /* --- TIPOGRAFÍA GENERAL Y ELEMENTOS MISCELÁNEOS --- */
-
 h2 {
     font-family: var(--font-heading);
     font-weight: normal;
     font-size: clamp(2.5rem, 8vw, 4rem);
     margin-bottom: 20px;
-    color: var(--color-accent); /* Ahora será negro */
+    color: var(--color-accent);
+    letter-spacing: 0.1em; /* Añadimos el espaciado para "LISTA DE NOVIOS" */
+    text-transform: uppercase;
 }
 
 .rsvp-form h2 {
     color: white;
     text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    letter-spacing: normal; /* Reseteamos el espaciado para este h2 */
+    text-transform: none;
 }
 
 p {
@@ -246,7 +267,7 @@ p {
 }
 
 .icon {
-    color: var(--color-accent); /* Los íconos ahora serán negros */
+    color: var(--color-accent);
     margin-bottom: 15px;
 }
 
