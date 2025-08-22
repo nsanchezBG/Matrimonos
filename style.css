@@ -1,0 +1,212 @@
+/* --- CONFIGURACIÓN GENERAL Y VARIABLES --- */
+:root {
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Lato', sans-serif;
+    --color-text: #333;
+    --color-background: #fdfaf6;
+    --color-accent: #a88a6a;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background-color: var(--color-background);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- SECCIONES PARALLAX (CON FOTO DE FONDO) --- */
+.parallax-section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    overflow: hidden; /* Muy importante para el efecto parallax */
+    
+    /* Fondo con overlay oscuro para mejorar legibilidad del texto */
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed; /* Este es el truco más simple de parallax */
+}
+
+/* Imágenes de fondo para cada sección */
+#hero {
+    /* Reemplaza esta URL con una foto tuya */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1529602263123-6a0d0159b959?q=80&w=2070');
+}
+#location {
+    /* Reemplaza esta URL con otra foto */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2070');
+}
+#rsvp {
+    /* Reemplaza esta URL con otra foto tuya */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1500964757637-c85e8a162699?q=80&w=2071');
+}
+
+.parallax-content {
+    /* El JavaScript moverá este contenedor */
+    position: relative; /* Lo cambiamos de absolute para que el JS lo controle mejor */
+    z-index: 1;
+    padding: 20px;
+    max-width: 90%;
+}
+
+/* --- SECCIONES DE CONTENIDO (FONDO LISO) --- */
+.content-section {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 20px;
+    text-align: center;
+    background-color: var(--color-background);
+}
+
+.content-wrapper {
+    max-width: 800px;
+    width: 100%;
+}
+
+/* --- EFECTO DE APARICIÓN CON BLUR --- */
+.fade-in-section {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, filter 0.8s ease-out, transform 0.8s ease-out;
+}
+.fade-in-section.is-visible {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+}
+
+
+/* --- ESTILOS DE TEXTOS Y ELEMENTOS ESPECÍFICOS --- */
+h1, h2 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    margin: 0;
+}
+h1 {
+    font-size: clamp(3rem, 10vw, 6rem); /* Responsive font size */
+    line-height: 1.1;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+}
+h2 {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    margin-bottom: 20px;
+    color: var(--color-accent);
+}
+p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 10px auto;
+}
+
+.date {
+    font-size: 1.5rem;
+    font-family: var(--font-body);
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-top: 20px;
+}
+
+.address {
+    font-size: 1.2rem;
+    margin-top: 20px;
+    font-weight: 400;
+}
+
+.map-image {
+    max-width: 250px;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.icon {
+    color: var(--color-accent);
+    margin-bottom: 15px;
+}
+
+/* Grid para la lista de novios */
+.gift-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+.gift-item {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.gift-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.08);
+}
+.gift-item p {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 10px 0 5px;
+}
+.gift-item span {
+    font-size: 0.9rem;
+    color: #777;
+    word-break: break-all;
+}
+
+/* Formulario de confirmación */
+.rsvp-form {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 500px;
+    width: 90%;
+    color: white;
+}
+.rsvp-form h2 {
+    color: white;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+}
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 300;
+}
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+.rsvp-form button {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--color-accent);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.rsvp-form button:hover {
+    background-color: #8c7050;
+}
