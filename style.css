@@ -10,7 +10,6 @@
 /* --- CONFIGURACIÓN GENERAL Y VARIABLES --- */
 :root {
     --font-heading: 'Glamick', serif; 
-    /* Agregamos la nueva fuente para la fecha */
     --font-date: 'Open Sans', sans-serif;
     --font-body: 'Lato', sans-serif;
     --color-text: #333;
@@ -27,80 +26,25 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* --- ESTILOS DEL MÓDULO HERO (COINCIDENCIA CON IMAGEN) --- */
-#hero {
+/* --- ESTRUCTURA DE SECCIONES PRINCIPALES --- */
+
+/* ESTA ES LA REGLA GENERAL CLAVE QUE FALTABA */
+/* Aplica a todas las secciones con imagen de fondo y efecto parallax */
+.parallax-section {
     position: relative;
     height: 100vh;
     overflow: hidden;
     display: flex;
-    justify-content: center;
-    /* 1. Posicionamiento: Alineamos el contenido abajo */
-    align-items: flex-end; 
+    justify-content: center; 
+    align-items: center; /* Centra el contenido por defecto */   
     text-align: center;
     background-size: cover;
     background-position: center center;
     background-attachment: fixed;
-    /* 6. Color y Sombra: Eliminamos el gradiente oscuro */
-    background-image: url('foto-principal.jpg'); 
-    /* Damos un padding inferior para que no quede pegado al borde */
-    padding-bottom: 10vh;
     box-sizing: border-box;
 }
 
-.parallax-content {
-    position: relative;
-    z-index: 1;
-    padding: 20px;
-    width: 90%;
-    max-width: 1200px;
-    box-sizing: border-box;
-}
-
-.hero-text-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    /* 6. Color: El texto será negro */
-    color: #000; 
-}
-
-.name, .ampersand, .date {
-    font-family: var(--font-heading);
-    font-weight: normal;
-    text-transform: uppercase;
-    /* 6. Sombra: Sin sombra de texto */
-    text-shadow: none;
-}
-
-.name {
-    /* 2. Tamaño de tipografía */
-    font-size: clamp(3.5rem, 12vw, 8rem);
-    /* 3. Interlineado (muy junto) */
-    line-height: 0.85; 
-    /* 3. Interletrado (un poco separado) */
-    letter-spacing: 0.05em;
-}
-
-.ampersand {
-    /* 2. Tamaño de tipografía (mucho más pequeño) */
-    font-size: clamp(2rem, 6vw, 4rem);
-    line-height: 1;
-}
-
-.date {
-    /* 4. Fuente de la fecha */
-    font-family: var(--font-date);
-    text-transform: none; /* La fecha no va en mayúsculas */
-    font-weight: 400;
-    /* 2. Tamaño de tipografía */
-    font-size: clamp(1rem, 2.5vw, 1.2rem);
-    letter-spacing: 0.1em;
-    /* 3. Espaciado superior */
-    margin-top: 2rem;
-}
-
-/* --- SECCIONES DE CONTENIDO (FONDO LISO) --- */
+/* Secciones con fondo de color liso */
 .content-section {
     min-height: 80vh;
     display: flex;
@@ -116,50 +60,76 @@ body {
     width: 100%;
 }
 
-/* --- EFECTO DE APARICIÓN CON BLUR --- */
-.fade-in-section {
-    opacity: 0;
-    filter: blur(5px);
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-out, filter 0.8s ease-out, transform 0.8s ease-out;
-}
-.fade-in-section.is-visible {
-    opacity: 1;
-    filter: blur(0);
-    transform: translateY(0);
+/* --- ESTILOS ESPECÍFICOS PARA CADA SECCIÓN PARALLAX --- */
+
+/* 1. Módulo Hero */
+#hero {
+    align-items: flex-end; /* Sobrescribe el centrado para alinear abajo */
+    padding-bottom: 10vh;
+    background-image: url('foto-principal.jpg'); /* Sin gradiente oscuro */
 }
 
-/* --- ESTILOS DE TEXTOS Y ELEMENTOS ESPECÍFICOS --- */
-h1, h2 {
+/* 2. Módulo Ubicación */
+#location {
+    color: white; /* Aseguramos texto blanco para legibilidad */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('foto-ubicacion.jpg');
+}
+
+/* 3. Módulo Confirmación */
+#rsvp {
+    color: white; /* Aseguramos texto blanco para legibilidad */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('foto-confirmacion.jpg');
+}
+
+/* --- ESTILOS DE COMPONENTES Y CONTENIDO INTERNO --- */
+
+.parallax-content {
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+    width: 90%;
+    max-width: 1200px;
+    box-sizing: border-box;
+}
+
+/* Contenido específico del Hero */
+.hero-text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    color: #000; /* Texto negro para el hero */
+}
+
+.name, .ampersand {
     font-family: var(--font-heading);
-    font-weight: normal; /* Las fuentes personalizadas a menudo no necesitan bold */
-    margin: 0;
+    font-weight: normal;
+    text-transform: uppercase;
+    text-shadow: none;
 }
-h1 {
-    font-size: clamp(3.5rem, 10vw, 7rem); /* Un poco más grande para la nueva fuente */
-    line-height: 1.2;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+
+.name {
+    font-size: clamp(3.5rem, 12vw, 8rem);
+    line-height: 0.85; 
+    letter-spacing: 0.05em;
 }
-h2 {
-    font-size: clamp(2.5rem, 8vw, 4rem);
-    margin-bottom: 20px;
-    color: var(--color-accent);
-}
-p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    max-width: 600px;
-    margin: 10px auto;
+
+.ampersand {
+    font-size: clamp(2rem, 6vw, 4rem);
+    line-height: 1;
 }
 
 .date {
-    font-size: 1.5rem;
-    font-family: var(--font-body);
-    font-weight: 300;
-    letter-spacing: 2px;
-    margin-top: 20px;
+    font-family: var(--font-date);
+    text-transform: none;
+    font-weight: 400;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    letter-spacing: 0.1em;
+    margin-top: 2rem;
+    text-shadow: none;
 }
 
+/* Contenido de la sección Ubicación */
 .address {
     font-size: 1.2rem;
     margin-top: 20px;
@@ -171,49 +141,48 @@ p {
     width: 100%;
     border-radius: 8px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-    background: rgba(255,255,255,0.1); /* Ligero fondo por si el PNG tiene partes muy transparentes */
+    background: rgba(255,255,255,0.1);
     backdrop-filter: blur(2px);
 }
 
-.icon {
-    color: var(--color-accent);
-    margin-bottom: 15px;
-}
-
-/* Grid para la lista de novios */
+/* Contenido de la Lista de Novios */
 .gift-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 30px;
     margin-top: 40px;
 }
+
 .gift-item {
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .gift-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 15px rgba(0,0,0,0.08);
 }
+
 .gift-item p {
     font-family: var(--font-heading);
-    font-size: 1.5rem; /* Ajustado para la nueva fuente */
+    font-size: 1.5rem;
     font-weight: normal;
     margin: 10px 0 5px;
 }
+
 .gift-item span {
     font-size: 0.9rem;
     color: #777;
     word-break: break-all;
 }
 
-/* Formulario de confirmación */
+/* Formulario de Confirmación */
 .rsvp-form {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px); /* Para Safari */
+    -webkit-backdrop-filter: blur(10px);
     padding: 40px;
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -221,19 +190,18 @@ p {
     width: 100%;
     box-sizing: border-box;
 }
-.rsvp-form h2 {
-    color: white;
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
-}
+
 .form-group {
     margin-bottom: 20px;
     text-align: left;
 }
+
 .form-group label {
     display: block;
     margin-bottom: 5px;
     font-weight: 300;
 }
+
 .form-group input {
     width: 100%;
     padding: 12px;
@@ -242,6 +210,7 @@ p {
     font-size: 1rem;
     box-sizing: border-box;
 }
+
 .rsvp-form button {
     width: 100%;
     padding: 15px;
@@ -254,6 +223,49 @@ p {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
+
 .rsvp-form button:hover {
     background-color: #8c7050;
+}
+
+/* --- TIPOGRAFÍA GENERAL Y ELEMENTOS MISCELÁNEOS --- */
+
+h2 {
+    font-family: var(--font-heading);
+    font-weight: normal;
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    margin-bottom: 20px;
+    color: var(--color-accent);
+}
+
+/* Estilo para el h2 dentro del formulario, que debe ser blanco */
+.rsvp-form h2 {
+    color: white;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+}
+
+p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 10px auto;
+}
+
+.icon {
+    color: var(--color-accent);
+    margin-bottom: 15px;
+}
+
+/* --- ANIMACIONES --- */
+.fade-in-section {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, filter 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-section.is-visible {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
 }
