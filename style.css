@@ -1,6 +1,16 @@
+/* --- CONFIGURACIÓN DE FUENTE PERSONALIZADA --- */
+@font-face {
+    font-family: 'Glamick'; /* Le damos un nombre a nuestra fuente */
+    src: url('GlamickRegular.woff2') format('woff2'); /* Ruta al archivo de la fuente */
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* Mejora el rendimiento de carga */
+}
+
 /* --- CONFIGURACIÓN GENERAL Y VARIABLES --- */
 :root {
-    --font-heading: 'Playfair Display', serif;
+    /* ¡AQUÍ USAMOS TU FUENTE! */
+    --font-heading: 'Glamick', serif; 
     --font-body: 'Lato', sans-serif;
     --color-text: #333;
     --color-background: #fdfaf6;
@@ -18,48 +28,39 @@ body {
 
 /* --- SECCIONES PARALLAX (CON FOTO DE FONDO) --- */
 .parallax-section {
-    position: relative; /* Necesario para que el .parallax-content se posicione dentro */
+    position: relative;
     height: 100vh;
-    overflow: hidden; /* Muy importante para el efecto parallax */
-    
-    /* ¡LA CLAVE ESTÁ AQUÍ! Usamos Flexbox para centrar todo */
+    overflow: hidden;
     display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center;    /* Centra verticalmente */
-    
+    justify-content: center;
+    align-items: center;
     color: white;
     text-align: center;
-    
-    /* Fondo con overlay oscuro para mejorar legibilidad del texto */
     background-size: cover;
     background-position: center center;
-    background-attachment: fixed; /* Mantenemos el truco simple de parallax */
+    background-attachment: fixed;
+}
+
+/* --- IMÁGENES DE FONDO LOCALES --- */
+/* REEMPLAZA los nombres de archivo con los tuyos */
+#hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('foto-principal.jpg');
+}
+#location {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('foto-ubicacion.jpg');
+}
+#rsvp {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('foto-confirmacion.jpg');
 }
 
 .parallax-content {
-    /* Ya no necesita position: absolute ni transform para centrarse */
-    position: relative; /* Volvemos a relative para que el JS lo mueva sin problemas */
+    position: relative;
     z-index: 1;
     padding: 20px;
-    width: 90%; /* Ocupa el 90% del ancho disponible */
-    max-width: 1200px; /* Pero no más de 1200px en pantallas grandes */
-    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+    width: 90%;
+    max-width: 1200px;
+    box-sizing: border-box;
 }
-
-/* Imágenes de fondo para cada sección */
-#hero {
-    /* Reemplaza esta URL con una foto tuya */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1529602263123-6a0d0159b959?q=80&w=2070');
-}
-#location {
-    /* Reemplaza esta URL con otra foto */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2070');
-}
-#rsvp {
-    /* Reemplaza esta URL con otra foto tuya */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1500964757637-c85e8a162699?q=80&w=2071');
-}
-
 
 /* --- SECCIONES DE CONTENIDO (FONDO LISO) --- */
 .content-section {
@@ -90,20 +91,19 @@ body {
     transform: translateY(0);
 }
 
-
 /* --- ESTILOS DE TEXTOS Y ELEMENTOS ESPECÍFICOS --- */
 h1, h2 {
     font-family: var(--font-heading);
-    font-weight: 700;
+    font-weight: normal; /* Las fuentes personalizadas a menudo no necesitan bold */
     margin: 0;
 }
 h1 {
-    font-size: clamp(3rem, 10vw, 6rem); /* Responsive font size */
-    line-height: 1.1;
+    font-size: clamp(3.5rem, 10vw, 7rem); /* Un poco más grande para la nueva fuente */
+    line-height: 1.2;
     text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
 }
 h2 {
-    font-size: clamp(2rem, 8vw, 3.5rem);
+    font-size: clamp(2.5rem, 8vw, 4rem);
     margin-bottom: 20px;
     color: var(--color-accent);
 }
@@ -133,6 +133,8 @@ p {
     width: 100%;
     border-radius: 8px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    background: rgba(255,255,255,0.1); /* Ligero fondo por si el PNG tiene partes muy transparentes */
+    backdrop-filter: blur(2px);
 }
 
 .icon {
@@ -159,8 +161,8 @@ p {
 }
 .gift-item p {
     font-family: var(--font-heading);
-    font-size: 1.3rem;
-    font-weight: 700;
+    font-size: 1.5rem; /* Ajustado para la nueva fuente */
+    font-weight: normal;
     margin: 10px 0 5px;
 }
 .gift-item span {
@@ -173,12 +175,13 @@ p {
 .rsvp-form {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Para Safari */
     padding: 40px;
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     max-width: 500px;
-    width: 90%;
-    color: white;
+    width: 100%;
+    box-sizing: border-box;
 }
 .rsvp-form h2 {
     color: white;
