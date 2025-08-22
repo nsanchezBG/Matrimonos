@@ -91,7 +91,6 @@ body {
     color: var(--color-text);
 }
 
-/* El título del Hero se mantiene con la fuente 'Glamick' */
 .name, .ampersand {
     font-family: var(--font-heading);
     font-weight: normal;
@@ -170,11 +169,9 @@ body {
 }
 
 .gift-item p {
-    /* CAMBIO: Fuente cambiada a Open Sans */
     font-family: var(--font-date);
-    /* CAMBIO: Añadimos negrita para darle más peso de título */
     font-weight: 700;
-    font-size: 1.1rem; /* Ajuste de tamaño para Open Sans */
+    font-size: 1.1rem;
     margin: 0;
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -240,21 +237,18 @@ body {
 
 /* --- TIPOGRAFÍA GENERAL Y ELEMENTOS MISCELÁNEOS --- */
 h2 {
-    /* CAMBIO: Fuente cambiada a Open Sans */
     font-family: var(--font-date); 
-    /* CAMBIO: Añadimos negrita para darle más peso de título */
     font-weight: 700;
-    font-size: clamp(2rem, 5vw, 2.5rem); /* Ajuste de tamaño para Open Sans */
+    font-size: clamp(2rem, 5vw, 2.5rem);
     margin-bottom: 25px;
     color: var(--color-accent);
-    letter-spacing: 0.2em; /* Un poco más de espacio para este estilo */
+    letter-spacing: 0.2em;
     text-transform: uppercase;
 }
 
 .rsvp-form h2 {
     color: white;
     text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
-    /* CAMBIO: Se asegura que también sea mayúsculas */
     text-transform: uppercase;
 }
 
@@ -282,4 +276,33 @@ p {
     opacity: 1;
     filter: blur(0);
     transform: translateY(0);
+}
+
+/* --- MÓDULO 6: TRANSMISIÓN EN VIVO (NUEVO) --- */
+.live-stream-button {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 30px;
+    padding: 15px 30px;
+    border: 2px solid var(--color-text);
+    border-radius: 50px; /* Botón con forma de píldora */
+    color: var(--color-text);
+    text-decoration: none;
+    font-family: var(--font-date);
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.live-stream-button:hover {
+    background-color: var(--color-text);
+    color: var(--color-background);
+}
+
+.live-stream-button svg {
+    margin-right: 12px; /* Espacio entre el ícono y el texto */
+    width: 24px;
+    height: 24px;
 }
