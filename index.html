@@ -78,25 +78,25 @@
         </div>
     </div>
 </section>
-
-    <!-- 5. MÓDULO CONFIRMACIÓN (RSVP) -->
-    <section id="rsvp" class="parallax-section">
-        <div class="parallax-content" data-speed="0.5">
-            <!-- Pega aquí tu URL de Formspree -->
-            <form id="rsvp-form" class="rsvp-form" action="https://formspree.io/f/xxxxxxxx" method="POST">
-                <h2>¿Vienes?</h2>
-                <div class="form-group">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" id="nombre" name="nombre" required>
-                </div>
-                <div class="form-group">
-                    <label for="apellido">Apellido</label>
-                    <input type="text" id="apellido" name="apellido" required>
-                </div>
-                <button type="submit">Confirmo</button>
-            </form>
-        </div>
-    </section>
+<!-- 5. MÓDULO CONFIRMACIÓN (RSVP) - CONECTADO A TU GOOGLE FORM -->
+<section id="rsvp" class="parallax-section">
+    <div class="parallax-content" data-speed="0.5">
+        <form id="rsvp-form" class="rsvp-form">
+            <h2>¿Vienes?</h2>
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <!-- Name para "Nombre" -->
+                <input type="text" id="nombre" name="entry.76992183" required>
+            </div>
+            <div class="form-group">
+                <label for="apellido">Apellido</label>
+                <!-- Name para "Apellido" -->
+                <input type="text" id="apellido" name="entry.1029903948" required>
+            </div>
+            <button type="submit">Confirmo</button>
+        </form>
+    </div>
+</section>
 
      <!-- 6. MÓDULO TRANSMISIÓN EN VIVO (NUEVO) -->
     <section id="live-stream" class="content-section fade-in-section">
