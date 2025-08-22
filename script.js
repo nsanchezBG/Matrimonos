@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const button = form.querySelector('button');
         const originalButtonText = button.textContent;
         
-        // ¡ESTA ES TU URL! YA ESTÁ LISTA.
+        // ¡ESTA ES TU URL! YA ESTÁ CORRECTA Y ACTUALIZADA.
         const googleFormUrl = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSeRFRgmDIKoPfOaOEPv29tlYyPhKZvKffbOl63nfC3k49JCfg/formResponse'; 
 
         button.textContent = 'Enviando...';
