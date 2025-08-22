@@ -332,6 +332,6 @@ p {
     
     /* Ajuste para que el texto no sea tan gigante en pantallas muy pequeñas */
     .name {
-        font-size: clamp(3.5rem, 15.5vw, 10.5rem);
+        font-size: clamp(6.5rem, 15.5vw, 10.5rem);
     }
 }
