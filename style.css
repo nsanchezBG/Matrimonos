@@ -100,7 +100,7 @@ body {
 }
 
 .name {
-    font-size: clamp(4.5rem, 15.5vw, 10.5rem);
+    font-size: clamp(6.5rem, 15.5vw, 10.5rem);
     line-height: 0.85; 
     letter-spacing: -0.02em;
 }
