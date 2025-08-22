@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    // --- 1. LÓGICA PARALLAX COMPATIBLE CON FLEXBOX ---
+    // --- 1. LÓGICA PARALLAX ---
     const parallaxContent = document.querySelectorAll('.parallax-content');
     window.addEventListener('scroll', () => {
         let scrollPosition = window.pageYOffset;
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // --- 2. LÓGICA PARA LA ANIMACIÓN DE APARICIÓN (BLUR) ---
+    // --- 2. LÓGICA DE ANIMACIÓN ---
     const fadeElements = document.querySelectorAll('.fade-in-section');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -28,39 +28,41 @@ document.addEventListener('DOMContentLoaded', function() {
     }, { threshold: 0.1 });
     fadeElements.forEach(el => observer.observe(el));
 
-    // --- 3. LÓGICA PARA ENVIAR EL FORMULARIO A GOOGLE SHEETS SIN REDIRECCIÓN ---
+    // --- 3. LÓGICA PARA ENVIAR EL FORMULARIO A GOOGLE APPS SCRIPT ---
     const rsvpForm = document.getElementById('rsvp-form');
     rsvpForm.addEventListener('submit', function(event) {
-        event.preventDefault(); // Previene que la página se recargue
+        event.preventDefault();
 
         const form = event.target;
         const formData = new FormData(form);
         const button = form.querySelector('button');
         const originalButtonText = button.textContent;
         
-        // ¡ESTA ES TU URL! YA ESTÁ CORRECTA Y ACTUALIZADA.
-        const googleFormUrl = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSeRFRgmDIKoPfOaOEPv29tlYyPhKZvKffbOl63nfC3k49JCfg/formResponse'; 
+        // PEGA AQUÍ LA URL DE TU APLICACIÓN WEB QUE COPIASTE EN EL PASO 3
+        const webAppUrl = 'https://script.google.com/macros/s/AKfycbzmE6gpYWrsrmXU2LY214o967nWjFHHTVOQFGX76KtBNYA2bCEUi-IJySVPjzmXXouH6w/exec'; 
 
         button.textContent = 'Enviando...';
         button.disabled = true;
 
-        // Enviamos los datos en segundo plano
-        fetch(googleFormUrl, {
+        fetch(webAppUrl, {
             method: 'POST',
             body: formData,
-            mode: 'no-cors' // Modo especial para evitar errores de CORS con Google
         })
-        .then(() => {
-            // El envío fue exitoso
-            form.reset(); // Limpia el formulario
-            button.textContent = '¡Confirmado!';
-            setTimeout(() => {
-                button.textContent = originalButtonText; // Restaura el texto original del botón
-                button.disabled = false;
-            }, 3000); // Después de 3 segundos
+        .then(response => response.json())
+        .then(data => {
+            if (data.result === 'success') {
+                form.reset();
+                button.textContent = '¡Confirmado!';
+                setTimeout(() => {
+                    button.textContent = originalButtonText;
+                    button.disabled = false;
+                }, 3000);
+            } else {
+                // Si algo saliera mal en el script, lo veríamos aquí
+                throw new Error('El servidor respondió con un error.');
+            }
         })
         .catch(error => {
-            // Ocurrió un error de red
             console.error('Error:', error);
             alert('Hubo un error al enviar la confirmación. Por favor, inténtalo de nuevo.');
             button.textContent = originalButtonText;
