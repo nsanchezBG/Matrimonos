@@ -314,3 +314,20 @@ p {
     width: 24px;
     height: 24px;
 }
+
+/* --- AJUSTES PARA PANTALLAS PEQUEÑAS (MÓVILES Y TABLETS) --- */
+
+@media (max-width: 768px) {
+
+    /* Ajuste específico para la imagen del primer módulo */
+    #hero {
+        /* 1. Desactiva el parallax en móviles. Mejora el rendimiento y soluciona errores de visualización. */
+        background-attachment: scroll;
+
+        /* 2. ¡LA CLAVE! Cambia la posición del fondo. En lugar de centrarlo, lo alinea 
+           al centro horizontal y a la parte inferior vertical. Esto "sube" la imagen,
+           mostrando lo que estaba abajo (probablemente ustedes). */
+        background-position: center bottom;
+    }
+
+}
