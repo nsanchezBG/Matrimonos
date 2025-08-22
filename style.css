@@ -18,19 +18,32 @@ body {
 
 /* --- SECCIONES PARALLAX (CON FOTO DE FONDO) --- */
 .parallax-section {
-    position: relative;
+    position: relative; /* Necesario para que el .parallax-content se posicione dentro */
     height: 100vh;
+    overflow: hidden; /* Muy importante para el efecto parallax */
+    
+    /* ¡LA CLAVE ESTÁ AQUÍ! Usamos Flexbox para centrar todo */
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;    /* Centra verticalmente */
+    
     color: white;
     text-align: center;
-    overflow: hidden; /* Muy importante para el efecto parallax */
     
     /* Fondo con overlay oscuro para mejorar legibilidad del texto */
     background-size: cover;
     background-position: center center;
-    background-attachment: fixed; /* Este es el truco más simple de parallax */
+    background-attachment: fixed; /* Mantenemos el truco simple de parallax */
+}
+
+.parallax-content {
+    /* Ya no necesita position: absolute ni transform para centrarse */
+    position: relative; /* Volvemos a relative para que el JS lo mueva sin problemas */
+    z-index: 1;
+    padding: 20px;
+    width: 90%; /* Ocupa el 90% del ancho disponible */
+    max-width: 1200px; /* Pero no más de 1200px en pantallas grandes */
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
 }
 
 /* Imágenes de fondo para cada sección */
@@ -47,17 +60,6 @@ body {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1500964757637-c85e8a162699?q=80&w=2071');
 }
 
-.parallax-content {
-    /* Posicionado absolutamente respecto a su sección padre */
-    position: absolute; /* <--- AHORA ES ABSOLUTO */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Centrado perfecto inicial */
-    z-index: 1;
-    padding: 20px;
-    width: 90%; /* Usamos width en vez de max-width para el centrado */
-    max-width: 1200px; /* Ponemos un límite máximo */
-}
 
 /* --- SECCIONES DE CONTENIDO (FONDO LISO) --- */
 .content-section {
