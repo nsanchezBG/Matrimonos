@@ -61,7 +61,6 @@ body {
     align-items: flex-end;
     padding-bottom: 10vh;
     background-image: url('foto-principal.jpg');
-    background-position: center ;
 }
 
 #location {
@@ -266,7 +265,6 @@ p {
     margin-bottom: 15px;
 }
 
-/* CAMBIO: Se añade un tamaño específico para el ícono de Dress Code */
 #dress-code .icon {
     width: 64px;
     height: 64px;
@@ -315,19 +313,34 @@ p {
     height: 24px;
 }
 
+
 /* --- AJUSTES PARA PANTALLAS PEQUEÑAS (MÓVILES Y TABLETS) --- */
 
 @media (max-width: 768px) {
 
     /* Ajuste específico para la imagen del primer módulo */
     #hero {
-        /* 1. Desactiva el parallax en móviles. Mejora el rendimiento y soluciona errores de visualización. */
+        /* 1. Muestra la imagen COMPLETA sin recortar. */
+        background-size: contain;
+
+        /* 2. Evita que la imagen se repita si queda espacio en blanco. */
+        background-repeat: no-repeat;
+        
+        /* 3. Centra la imagen (que ahora no ocupa toda la pantalla) en el medio. */
+        background-position: center center;
+        
+        /* 4. Desactiva el parallax para mejorar rendimiento en móviles. */
         background-attachment: scroll;
 
-        /* 2. ¡LA CLAVE! Cambia la posición del fondo. En lugar de centrarlo, lo alinea 
-           al centro horizontal y a la parte inferior vertical. Esto "sube" la imagen,
-           mostrando lo que estaba abajo (probablemente ustedes). */
-        background-position: center bottom;
-    }
+        /* 5. Vuelve a centrar el texto verticalmente para que coincida con la imagen. */
+        align-items: center;
 
-}
+        /* 6. Elimina el padding inferior que ya no es necesario. */
+        padding-bottom: 0;
+    }
+    
+    /* Ajuste para que el texto no sea tan gigante en pantallas muy pequeñas */
+    .name {
+        font-size: clamp(3.5rem, 15.5vw, 10.5rem);
+    }
+}```
