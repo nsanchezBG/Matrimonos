@@ -60,7 +60,8 @@ body {
 #hero {
     align-items: flex-end;
     padding-bottom: 10vh;
-    background-image: url('foto-principal.jpg');
+    /* CAMBIO: Usa la imagen para DESKTOP por defecto */
+    background-image: url('foto-principal-desktop.jpg');
 }
 
 #location {
@@ -119,6 +120,9 @@ body {
     text-shadow: none;
 }
 
+/* ... (el resto del CSS hasta el final permanece igual) ... */
+/* ... (lo incluyo todo para que no haya dudas) ... */
+
 .address {
     font-size: 1.2rem;
     margin-top: 20px;
@@ -134,7 +138,6 @@ body {
     backdrop-filter: blur(2px);
 }
 
-/* --- MÓDULO LISTA DE NOVIOS --- */
 .gift-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -186,7 +189,6 @@ body {
     word-break: break-all;
 }
 
-/* --- MÓDULO FORMULARIO --- */
 .rsvp-form {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
@@ -236,7 +238,6 @@ body {
     background-color: #333;
 }
 
-/* --- TIPOGRAFÍA GENERAL Y ELEMENTOS MISCELÁNEOS --- */
 h2 {
     font-family: var(--font-date); 
     font-weight: 700;
@@ -270,7 +271,6 @@ p {
     height: 64px;
 }
 
-/* --- ANIMACIONES --- */
 .fade-in-section {
     opacity: 0;
     filter: blur(5px);
@@ -284,7 +284,6 @@ p {
     transform: translateY(0);
 }
 
-/* --- MÓDULO 6: TRANSMISIÓN EN VIVO --- */
 .live-stream-button {
     display: inline-flex;
     align-items: center;
@@ -313,30 +312,22 @@ p {
     height: 24px;
 }
 
-
-/* --- AJUSTES PARA PANTALLAS PEQUEÑAS (MÓVILES Y TABLETS) --- */
-
+/* --- AJUSTES PARA PANTALLAS PEQUEÑAS (SOLUCIÓN DEFINITIVA) --- */
 @media (max-width: 768px) {
 
-    /* Ajuste específico para la imagen del primer módulo */
     #hero {
-        /* 1. Muestra la imagen COMPLETA sin recortar. */
-        background-size: contain;
+        /* 1. CAMBIA a la imagen optimizada para móviles (vertical). */
+        background-image: url('foto-principal-mobile.jpg');
 
-        /* 2. Evita que la imagen se repita si queda espacio en blanco. */
-        background-repeat: no-repeat;
+        /* 2. Ahora que la imagen es vertical, 'cover' funcionará perfectamente. */
+        background-size: cover;
         
-        /* 3. Centra la imagen (que ahora no ocupa toda la pantalla) en el medio. */
-        background-position: center center;
+        /* 3. Volvemos a colocar el texto abajo, como en el diseño original. */
+        align-items: flex-end;
+        padding-bottom: 10vh;
         
-        /* 4. Desactiva el parallax para mejorar rendimiento en móviles. */
+        /* 4. Mantenemos el parallax desactivado por rendimiento. */
         background-attachment: scroll;
-
-        /* 5. Vuelve a centrar el texto verticalmente para que coincida con la imagen. */
-        align-items: center;
-
-        /* 6. Elimina el padding inferior que ya no es necesario. */
-        padding-bottom: 0;
     }
     
     /* Ajuste para que el texto no sea tan gigante en pantallas muy pequeñas */
