@@ -1,17 +1,32 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    // --- 1. LÓGICA PARA EL EFECTO PARALLAX ---
-    const parallaxElements = document.querySelectorAll('.parallax-content');
+    // --- 1. LÓGICA MEJORADA PARA EL EFECTO PARALLAX ---
+    // Seleccionamos las secciones parallax, no solo el contenido
+    const parallaxSections = document.querySelectorAll('.parallax-section');
 
     window.addEventListener('scroll', () => {
-        let scrollPosition = window.pageYOffset;
+        parallaxSections.forEach(section => {
+            const content = section.querySelector('.parallax-content');
+            if (!content) return; // Si no hay contenido, no hagas nada
 
-        parallaxElements.forEach(el => {
-            // El 'data-speed' en el HTML controla la velocidad. 0.5 = mitad de la velocidad del scroll.
-            let speed = parseFloat(el.dataset.speed) || 0.5;
+            // Obtenemos la posición de la sección en la ventana
+            const rect = section.getBoundingClientRect();
             
-            // Movemos el elemento verticalmente usando transform para un mejor rendimiento.
-            el.style.transform = `translateY(${scrollPosition * speed}px)`;
+            // 'rect.top' es la distancia desde la parte superior de la ventana a la sección.
+            // Cuando la sección está en el centro de la pantalla, rect.top es cercano a 0 o negativo.
+            // El cálculo asegura que el efecto se aplique mientras la sección es visible.
+            const scrollValue = window.innerHeight - rect.top;
+            
+            // Verificamos si la sección está en el viewport para optimizar
+            if (rect.bottom >= 0 && rect.top <= window.innerHeight) {
+                let speed = parseFloat(content.dataset.speed) || 0.5;
+                
+                // Calculamos el desplazamiento relativo
+                // Lo dividimos por un factor (ej: 4) para suavizar el efecto y evitar que se mueva demasiado
+                let offset = (rect.top * speed) / 2;
+
+                content.style.transform = `translateY(${offset}px)`;
+            }
         });
     });
 
@@ -19,22 +34,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- 2. LÓGICA PARA LA ANIMACIÓN DE APARICIÓN (BLUR) ---
     const fadeElements = document.querySelectorAll('.fade-in-section');
 
-    // IntersectionObserver es mucho más eficiente que escuchar el evento 'scroll' para esto.
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            // Si el elemento está en la pantalla (isIntersecting)
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
-                // Opcional: dejamos de observar el elemento una vez que ya ha aparecido.
                 observer.unobserve(entry.target);
             }
         });
     }, {
-        // threshold: 0.1 significa que la animación se dispara cuando el 10% del elemento es visible.
         threshold: 0.1
     });
 
-    // Le decimos al observador qué elementos debe vigilar.
     fadeElements.forEach(el => {
         observer.observe(el);
     });
