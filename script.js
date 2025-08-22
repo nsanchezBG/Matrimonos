@@ -1,31 +1,21 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    // --- 1. LÓGICA MEJORADA PARA EL EFECTO PARALLAX ---
-    // Seleccionamos las secciones parallax, no solo el contenido
+    // --- 1. LÓGICA MEJORADA PARA EL EFECTO PARALLAX (VERSIÓN PARA ABSOLUTE POSITIONING) ---
     const parallaxSections = document.querySelectorAll('.parallax-section');
 
     window.addEventListener('scroll', () => {
         parallaxSections.forEach(section => {
             const content = section.querySelector('.parallax-content');
-            if (!content) return; // Si no hay contenido, no hagas nada
+            if (!content) return; 
 
-            // Obtenemos la posición de la sección en la ventana
             const rect = section.getBoundingClientRect();
             
-            // 'rect.top' es la distancia desde la parte superior de la ventana a la sección.
-            // Cuando la sección está en el centro de la pantalla, rect.top es cercano a 0 o negativo.
-            // El cálculo asegura que el efecto se aplique mientras la sección es visible.
-            const scrollValue = window.innerHeight - rect.top;
-            
-            // Verificamos si la sección está en el viewport para optimizar
             if (rect.bottom >= 0 && rect.top <= window.innerHeight) {
                 let speed = parseFloat(content.dataset.speed) || 0.5;
-                
-                // Calculamos el desplazamiento relativo
-                // Lo dividimos por un factor (ej: 4) para suavizar el efecto y evitar que se mueva demasiado
-                let offset = (rect.top * speed) / 2;
+                let offset = rect.top * speed;
 
-                content.style.transform = `translateY(${offset}px)`;
+                // Combinamos el centrado inicial con el desplazamiento del parallax
+                content.style.transform = `translate(-50%, calc(-50% + ${offset}px))`;
             }
         });
     });
