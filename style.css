@@ -129,6 +129,12 @@ body {
     font-weight: 400;
 }
 
+.address2 {
+    font-size: 0.8rem;
+    margin-top: 20px;
+    font-weight: 400;
+}
+
 .map-image {
     max-width: 250px;
     width: 100%;
