@@ -61,7 +61,7 @@ body {
     align-items: flex-end;
     padding-bottom: 10vh;
     background-image: url('foto-principal.jpg');
-    background-position: center bottom;
+    background-position: center ;
 }
 
 #location {
