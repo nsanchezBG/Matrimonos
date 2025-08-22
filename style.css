@@ -48,11 +48,15 @@ body {
 }
 
 .parallax-content {
-    /* El JavaScript moverá este contenedor */
-    position: relative; /* Lo cambiamos de absolute para que el JS lo controle mejor */
+    /* Posicionado absolutamente respecto a su sección padre */
+    position: absolute; /* <--- AHORA ES ABSOLUTO */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centrado perfecto inicial */
     z-index: 1;
     padding: 20px;
-    max-width: 90%;
+    width: 90%; /* Usamos width en vez de max-width para el centrado */
+    max-width: 1200px; /* Ponemos un límite máximo */
 }
 
 /* --- SECCIONES DE CONTENIDO (FONDO LISO) --- */
