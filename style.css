@@ -1,16 +1,17 @@
 /* --- CONFIGURACIÓN DE FUENTE PERSONALIZADA --- */
 @font-face {
-    font-family: 'Glamick'; /* Le damos un nombre a nuestra fuente */
-    src: url('GlamickRegular.woff2') format('woff2'); /* Ruta al archivo de la fuente */
+    font-family: 'Glamick';
+    src: url('GlamickRegular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
-    font-display: swap; /* Mejora el rendimiento de carga */
+    font-display: swap;
 }
 
 /* --- CONFIGURACIÓN GENERAL Y VARIABLES --- */
 :root {
-    /* ¡AQUÍ USAMOS TU FUENTE! */
     --font-heading: 'Glamick', serif; 
+    /* Agregamos la nueva fuente para la fecha */
+    --font-date: 'Open Sans', sans-serif;
     --font-body: 'Lato', sans-serif;
     --color-text: #333;
     --color-background: #fdfaf6;
@@ -26,31 +27,24 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* --- SECCIONES PARALLAX (CON FOTO DE FONDO) --- */
-.parallax-section {
+/* --- ESTILOS DEL MÓDULO HERO (COINCIDENCIA CON IMAGEN) --- */
+#hero {
     position: relative;
     height: 100vh;
     overflow: hidden;
     display: flex;
     justify-content: center;
-    align-items: center;
-    color: white;
+    /* 1. Posicionamiento: Alineamos el contenido abajo */
+    align-items: flex-end; 
     text-align: center;
     background-size: cover;
     background-position: center center;
     background-attachment: fixed;
-}
-
-/* --- IMÁGENES DE FONDO LOCALES --- */
-/* REEMPLAZA los nombres de archivo con los tuyos */
-#hero {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('foto-principal.jpg');
-}
-#location {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('foto-ubicacion.jpg');
-}
-#rsvp {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('foto-confirmacion.jpg');
+    /* 6. Color y Sombra: Eliminamos el gradiente oscuro */
+    background-image: url('foto-principal.jpg'); 
+    /* Damos un padding inferior para que no quede pegado al borde */
+    padding-bottom: 10vh;
+    box-sizing: border-box;
 }
 
 .parallax-content {
@@ -60,6 +54,50 @@ body {
     width: 90%;
     max-width: 1200px;
     box-sizing: border-box;
+}
+
+.hero-text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    /* 6. Color: El texto será negro */
+    color: #000; 
+}
+
+.name, .ampersand, .date {
+    font-family: var(--font-heading);
+    font-weight: normal;
+    text-transform: uppercase;
+    /* 6. Sombra: Sin sombra de texto */
+    text-shadow: none;
+}
+
+.name {
+    /* 2. Tamaño de tipografía */
+    font-size: clamp(3.5rem, 12vw, 8rem);
+    /* 3. Interlineado (muy junto) */
+    line-height: 0.85; 
+    /* 3. Interletrado (un poco separado) */
+    letter-spacing: 0.05em;
+}
+
+.ampersand {
+    /* 2. Tamaño de tipografía (mucho más pequeño) */
+    font-size: clamp(2rem, 6vw, 4rem);
+    line-height: 1;
+}
+
+.date {
+    /* 4. Fuente de la fecha */
+    font-family: var(--font-date);
+    text-transform: none; /* La fecha no va en mayúsculas */
+    font-weight: 400;
+    /* 2. Tamaño de tipografía */
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    letter-spacing: 0.1em;
+    /* 3. Espaciado superior */
+    margin-top: 2rem;
 }
 
 /* --- SECCIONES DE CONTENIDO (FONDO LISO) --- */
